@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'head' %}
+    <link href="{% static 'css/usuarios.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block 'body' %}
+
+    <div class="container-fluid bg-inscricao">
+        
+        <div class="row">
+            <div class="col-md">
+                <h2 class="logo">Permutas One</h2>
+
+                {% include 'partials/usuarios/login_form.html' %}
+
+                <img src="{% static 'geral/img/logo_one.png' %}" class="logo-one">
+
+            </div>
+
+            <div class="col-md bg-img">
+            
+            </div>
+        
+        </div>
+    </div>
+
+{% endblock %}

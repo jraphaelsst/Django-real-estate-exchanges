@@ -1,0 +1,16 @@
+.navbar-color{
+    background-color: var(--main-color);
+}
+
+body{
+    background-color: var(--dark-color);
+}
+
+
+
+.fundo-pagina{
+    background-image: url('/static/imoveis/img/fundo_pagina.png');
+    height: 300px;
+    background-size: cover;
+    
+}

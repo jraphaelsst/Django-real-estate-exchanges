@@ -1,0 +1,75 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block 'importacoes' %}
+    <link href="{% static 'css/meus_imoveis.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block 'conteudo' %}
+    <div class="container">
+        <br>
+        <h2 id='tituloPagina'>Minhas Permutas</h2>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <form action="{% url 'minhas_permutas' %}" method="GET">
+                <label>Região: </label>
+                <input type="text" placeholder="Norte, Sul, Leste, Oeste" class="form-control" name="regiao_filtrada">
+            </div>
+            <div class='col-md-2'>
+                <label>Tipo: </label>
+                <input type='text' placeholder='Casa, Apartamento, Carro' class="form-control" name='tipo_filtrado'>
+            </div>
+            <div class='col-md-2'>
+                <label>Km Interesse: </label>
+                <input type='text' placeholder='22, 26, 28...' class="form-control" name='km_interesse'>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-4'>
+                <br>
+                <label>Valor Mínimo de interesse: </label>
+                <input type='text' name='valor_minimo_interesse' placeholder='1000000' class='form-control'>
+            </div>
+            <div class='col-md-4'>
+                <br>
+                <label>Valor Máximo de interesse: </label>
+                <input type='text' name='valor_maximo_interesse' placeholder='2000000' class='form-control'>
+            </div>
+                </form>
+        </div>
+
+            <div class="col-md">
+                <br>
+                <input type="submit" class="btn-principal" value="Filtrar">
+                </form>
+            </div>
+
+        </div>
+        <table>
+            <tr>
+                <th>Corretor</th>
+                <th>Tipo</th>
+                <th>Região</th>
+                <th>Valor de Venda</th>
+                <th>Km Interesse</th>
+                <th>Valor Mínimo Interesse</th>
+                <th>Valor Máximo Interesse</th>
+            </tr>
+
+            {% for permuta in permutas %}
+            <tr class="{% cycle 'linha' 'linha2' %}">
+                <td>{{permuta.corretor}}</td>
+                <td>{{permuta.tipo}}</td>
+                <td>{{permuta.regiao}}</td>
+                <td>{{permuta.valor_venda}}</td>
+                <td>{{permuta.km_interesse}}</td>
+                <td>{{permuta.valor_minimo_interesse}}</td>
+                <td>{{permuta.valor_maximo_interesse}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+{% endblock %}

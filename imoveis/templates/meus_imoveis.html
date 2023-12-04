@@ -1,0 +1,89 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block 'importacoes' %}
+    <link href="{% static 'css/meus_imoveis.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block 'conteudo' %}
+    <div class="container">
+        <br>
+        <h2 id='tituloPagina'>Meus Imóveis</h2>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <form action="{% url 'meus_imoveis' %}" method="GET">
+                <label>Condomínio: </label>
+                <input type="text" name="condominio_filtrado" placeholder="São Paulo II" class="form-control">
+            </div>
+            <div class='col-md-1'>
+                
+                <label>Km: </label>
+                <input type='text' name='km_filtrado' placeholder='26' class='form-control'>
+            </div>
+        <div class='row'>
+            <div class='col-md-2'>
+                <br>
+                <label>UF Interesse: </label>
+                <input type='text' name='uf_interesse' placeholder='SP, RJ, SC' class='form-control'>
+            </div>
+            <div class='col-md-3'>
+                <br>
+                <label>Região Interesse: </label>
+                <input type='text' name='regiao_interesse' placeholder='Norte, Leste, Oeste, Sul...' class='form-control'>
+            </div>
+            <div class='col-md-3'>
+                <br>
+                <label>Tipo Interesse: </label>
+                <input type='text' name='tipo_interesse' placeholder='Casa, Carro, Terreno, Galpão...' class='form-control'>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md'>
+                <br>
+                <label>Valor Mínimo de interesse: </label>
+                <input type='text' name='valor_minimo_interesse' placeholder='1000000' class='form-control'>
+            </div>
+            <div class='col-md'>
+                <br>
+                <label>Valor Máximo de interesse: </label>
+                <input type='text' name='valor_maximo_interesse' placeholder='2000000' class='form-control'>
+            </div>
+        </div>
+
+        <div class="col-md">
+            <br>
+            <input type="submit" class="btn-principal" value="Filtrar">
+            </form>
+        </div>
+        
+        <table>
+            <tr>
+                <th>Corretor</th>
+                <th>Ref</th>
+                <th>Condomínio</th>
+                <th>Km</th>
+                <th>Valor de Venda</th>
+                <th>Região Interesse</th>
+                <th>Valor Mínimo Interesse</th>
+                <th>Valor Máximo Interesse</th>
+            </tr>
+
+
+            {% for imovel in imoveis %}
+            <tr class="{% cycle 'linha' 'linha2' %}">
+                <td>{{imovel.corretor}}</td>
+                <td>{{imovel.ref}}</td>
+                <td>{{imovel.condominio}}</td>
+                <td>{{imovel.km}}</td>
+                <td>{{imovel.valor_venda}}</td>
+                <td>{{imovel.regiao_interesse}}</td>
+                <td>{{imovel.valor_minimo_interesse}}</td>
+                <td>{{imovel.valor_maximo_interesse}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+{% endblock %}
